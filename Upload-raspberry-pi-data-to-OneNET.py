@@ -82,7 +82,7 @@ def http_put(list):
     values={'datastreams':[{"id":list[2],"datapoints":[{"at":CurTime.isoformat(),"value":temperature}]}]}
     jdata = json.dumps(values)                  # 对数据进行JSON格式化编码
     #打印json内容
-    print "当前时间：%s ，当前数值 :  %s ,JSON：%s " % ( str(CurTime.isoformat()) str(temperature) str(jdata) )
+    print "POST:%s " % jdata
     request = urllib2.Request(list[1], jdata)
     request.add_header('api-key', APIKEY)
     request.get_method = lambda:'POST'          # 设置HTTP的访问方式
@@ -127,7 +127,7 @@ if __name__ == '__main__':
             for n in list_all:
                 time.sleep(3)
                 resp = http_put(n)
-                print "OneNET返回请求结果:\n %s" % resp
+                print "RETURN:%s" % resp
         else:
-            print "网络没有接通！%d " % ping()
+            print "ERR:%d " % ping()
             continue
