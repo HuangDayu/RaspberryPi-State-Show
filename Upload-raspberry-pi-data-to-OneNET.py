@@ -81,8 +81,8 @@ def http_put(list):
     CurTime = datetime.datetime.now()
     values={'datastreams':[{"id":list[2],"datapoints":[{"at":CurTime.isoformat(),"value":temperature}]}]}
     jdata = json.dumps(values)                  # 对数据进行JSON格式化编码
-    #打印json内容 
-    print "当前时间：%s ，当前数值 :  %s ,JSON：%s" ( %CurTime.isoformat() %str(temperature) %str(jdata) )
+    #打印json内容
+    print "当前时间：%s ，当前数值 :  %s ,JSON：%s" %CurTime.isoformat() %str(temperature) %str(jdata)
     request = urllib2.Request(list[1], jdata)
     request.add_header('api-key', APIKEY)
     request.get_method = lambda:'POST'          # 设置HTTP的访问方式
